@@ -8,6 +8,10 @@ const insert = () => {
             break
         case 'button': appendButton(label)
             break
+        case 'textfield': appendTextField(label)
+            break
+        case 'radio': appendRadioButton(label);
+            break;
     }
 
 }
@@ -40,7 +44,7 @@ const appendButton = (label = "Default") => {
     let button = document.createElement('button')
     let removeBtn = document.createElement('button')
 
-    button.setAttribute('class', 'btn btn-primary form-control mt-2')
+    button.setAttribute('class', 'btn btn-info form-control mt-2')
     button.textContent = label
     removeBtn.setAttribute('class', 'btn btn-outline-danger remove-btn ms-2 mt-2 mb-2')
     removeBtn.textContent = 'Remove'
@@ -56,6 +60,51 @@ const appendButton = (label = "Default") => {
     addRemoveButtonContainer()
 }
 
+const appendTextField = (label = "Default") => {
+
+    let elem = document.createElement('div')
+    let input = document.createElement('input')
+    let removeBtn = document.createElement('button')
+
+    input.setAttribute('textfield', label)
+    input.setAttribute('class', 'form-control mt-2')
+    removeBtn.setAttribute('class', 'btn btn-outline-danger remove-btn ms-2 mt-2 mb-2')
+    removeBtn.textContent = 'Remove'
+    removeBtn.addEventListener('click', () => {
+        removeElement(elem)
+    })
+
+    elem.appendChild(input)
+    elem.appendChild(removeBtn)
+
+    document.querySelector('#display').append(elem)
+
+    addRemoveButtonContainer()
+}
+
+const appendRadioButton = (label = "Default") => {
+    let elem = document.createElement('div');
+    let radio = document.createElement('input');
+    let radioLabel = document.createElement('label');
+    let removeBtn = document.createElement('button');
+
+    radio.setAttribute('type', 'radio');
+    radio.setAttribute('name', 'radio-group');
+    radioLabel.textContent = label;
+    removeBtn.setAttribute('class', 'btn btn-outline-danger remove-btn ms-2 mt-2 mb-2');
+    removeBtn.textContent = 'Remove';
+    removeBtn.addEventListener('click', () => {
+        removeElement(elem);
+    });
+
+    elem.appendChild(radio);
+    elem.appendChild(radioLabel);
+    elem.appendChild(removeBtn);
+
+    document.querySelector('#display').append(elem);
+
+    addRemoveButtonContainer();
+};
 
 const removeElement = (element) => {
     element.remove()
