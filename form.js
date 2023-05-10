@@ -68,10 +68,11 @@ const removeElement = (element) => {
 }
 const addRemoveButtonContainer = () => {
     let removeButtonContainer = document.querySelector('#remove-buttons-container')
-    
+
     if (!removeButtonContainer) {
         removeButtonContainer = document.createElement('div')
         removeButtonContainer.setAttribute('id', 'remove-buttons-container')
+        removeButtonContainer.setAttribute('class', 'd-flex justify-content-end') // Add this line
         document.querySelector('.card.mt-2').appendChild(removeButtonContainer)
     }
     let removeButtons = document.querySelectorAll('.remove-btn')
@@ -80,6 +81,7 @@ const addRemoveButtonContainer = () => {
     } else {
         let removeAllBtn = document.createElement('button')
         removeAllBtn.setAttribute('class', 'btn btn-danger')
+        removeAllBtn.setAttribute('style', 'margin-left: auto;') // Add this line
         removeAllBtn.textContent = 'Remove All'
         removeAllBtn.addEventListener('click', () => {
             document.querySelectorAll('.remove-btn').forEach(btn => btn.click())
